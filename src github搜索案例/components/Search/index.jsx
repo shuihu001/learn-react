@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PubSub from "pubsub-js";
 import axios from "axios";
 
 export default class Search extends Component {
@@ -8,31 +7,21 @@ export default class Search extends Component {
       keyWordElement: { value: keyWord },
     } = this;
     //发送请求前更新状态
-    // this.props.updataAppState({ isFirst: false, isLoading: true });
-    PubSub.publish("showPage", { isFirst: false, isLoading: true });
-
+    this.props.updataAppState({ isFirst: false, isLoading: true });
     axios.get(`http://localhost:3000/api1/search/users?q=${keyWord}`).then(
       (response) => {
-        PubSub.publish("showPage", {
+        //请求成功后更新状态
+        this.props.updataAppState({
           isLoading: false,
           users: response.data.items,
         });
-        //请求成功后更新状态
-        // this.props.updataAppState({
-        //   isLoading: false,
-        //   users: response.data.items,
-        // });
       },
       (error) => {
         //请求失败后更新状态
-        PubSub.publish("showPage", {
+        this.props.updataAppState({
           isLoading: false,
           err: error.message,
         });
-        // this.props.updataAppState({
-        //   isLoading: false,
-        //   err: error.message,
-        // });
       }
     );
   };
