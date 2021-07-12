@@ -11,31 +11,6 @@ export default class Search extends Component {
     // this.props.updataAppState({ isFirst: false, isLoading: true });
     PubSub.publish("showPage", { isFirst: false, isLoading: true });
 
-    // axios.get(`http://localhost:3000/api1/search/users2?q=${keyWord}`).then(
-    //   (response) => {
-    //     PubSub.publish("showPage", {
-    //       isLoading: false,
-    //       users: response.data.items,
-    //     });
-    //     //请求成功后更新状态
-    //     // this.props.updataAppState({
-    //     //   isLoading: false,
-    //     //   users: response.data.items,
-    //     // });
-    //   },
-    //   (error) => {
-    //     //请求失败后更新状态
-    //     PubSub.publish("showPage", {
-    //       isLoading: false,
-    //       err: error.message,
-    //     });
-    //     // this.props.updataAppState({
-    //     //   isLoading: false,
-    //     //   err: error.message,
-    //     // });
-    //   }
-    // );
-
     //用fetch发送网络请求
     // fetch(`http://localhost:3000/api1/search/users2?q=${keyWord}`).then(
     //   res => {
